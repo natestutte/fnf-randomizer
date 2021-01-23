@@ -6,12 +6,18 @@ Play and download Friday Night Funkin here: https://ninja-muffin24.itch.io/funki
 ## Requirements
 You will need Python 3.7+ to run the program. Install the most recent version of Python here: https://www.python.org/downloads/
 
-You will also need to download the latest version of Friday Night Funkin. This download can be found at the game's itchio page linked above.
+You will also need to download the latest version of Friday Night Funkin. This download can be found at the game's itchio page linked above. It is heavily recommended that you use a clean build and not your own build! Always good to have a backup just in case things go wrong.
 
 ## Installation and Instructions
 Download and place the fnf-randomizer.py file inside the root Friday Night Funkin directory (the same directory that the executable is in). With Python 3.7+ installed on the same computer, run the python executable by double-clicking it or running it through cmd using the command:
 
 `python fnf-randomizer.py`
+
+When running the program you should be greeted by a few options to select:
+
+- Randomize Notes: Randomizes what notes need to be pressed
+- Randomize Characters: Randomizes what characters appear on each map
+- Randomize Order: Randomizes who plays what section (Not Recommended!)
 
 Once the program is finished running, the patch should be complete and you should be able to open the game and enjoy a randomized experience
 
