@@ -5,7 +5,7 @@ import string
 import random
 import os
 
-def randomize(song, character, order):
+def randomize(song, notes, character, order):
 
     # gf-christmas crashes :(
     characterlist = [
@@ -36,19 +36,21 @@ def randomize(song, character, order):
     for a in data['song']['notes']:
         if order:
             a['mustHitSection'] = bool(random.getrandbits(1))
-        for b in a['sectionNotes']:
-            if b[1] > 3:
-                b[1] = random.randint(4, 7)
-            else:
-                b[1] = random.randint(0, 3)
+        if notes:
+            for b in a['sectionNotes']:
+                if b[1] > 3:
+                    b[1] = random.randint(4, 7)
+                else:
+                    b[1] = random.randint(0, 3)
     for a in data['notes']:
         if order:
             a['mustHitSection'] = bool(random.getrandbits(1))
-        for b in a['sectionNotes']:
-            if b[1] > 3:
-                b[1] = random.randint(4, 7)
-            else:
-                b[1] = random.randint(0, 3)
+        if notes:
+            for b in a['sectionNotes']:
+                if b[1] > 3:
+                    b[1] = random.randint(4, 7)
+                else:
+                    b[1] = random.randint(0, 3)
 
     data = json.dumps(data).replace(' ','')
 
@@ -58,14 +60,33 @@ def randomize(song, character, order):
 def main():
     directories = [a for a in os.listdir('./assets/data') if '.' not in a and a != 'smash'] # smash doesn't work :(
 
+    answer = {'y': True, 'n': False}
+
+    notes = input("Randomize notes? (y/n)")
+    if notes not in (['y'.lower(), 'n'.lower()]):
+        print("Please use y/n!")
+        notes = input("Randomize notes? (y/n)")
+    notes = answer[notes]
     characters = input("Randomize characters? (y/n): ")
+    if characters not in (['y'.lower(), 'n'.lower()]):
+        print("Please use y/n!")
+        characters = input("Randomize characters? (y/n): ")
+    characters = answer[characters]
     order = input("Randomize sections to hit? (y/n): ")
-    for a in directories:
-        for b in os.listdir(f'./assets/data/{a}'):
-            print(f"Randomizing {b}")
-            randomize(f'assets/data/{a}/{b}', characters, order)
-            print(f"{b} randomized")
-    input("Successfully randomized. Please press ENTER...")
+    if order not in (['y'.lower(), 'n'.lower()]):
+        print("Please use y/n!")
+        order = input("Randomize sections to hit? (y/n): ")
+    order = answer[order]
+
+    if not notes and not characters and not order:
+        print("What? If you didn't want to randomize anything why run this program?")
+    else: 
+        for a in directories:
+            for b in os.listdir(f'./assets/data/{a}'):
+                print(f"Randomizing {b}")
+                randomize(f'assets/data/{a}/{b}', notes, characters, order)
+                print(f"{b} randomized")
+        input("Successfully randomized. Please press ENTER...")
 
 if __name__ == "__main__":
     main()
