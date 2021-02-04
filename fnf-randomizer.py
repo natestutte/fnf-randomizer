@@ -20,7 +20,10 @@ def randomize(song, notes, character, order):
         'parents-christmas',
         'monster-christmas',
         'bf-christmas',
-        'monster'
+        'monster',
+        'bf-pixel',
+        'senpai',
+        'spirit'
     ]
     
     with open(song, 'r') as file:
@@ -83,9 +86,10 @@ def main():
     else: 
         for a in directories:
             for b in os.listdir(f'./assets/data/{a}'):
-                print(f"Randomizing {b}")
-                randomize(f'assets/data/{a}/{b}', notes, characters, order)
-                print(f"{b} randomized")
+                if '.txt' not in b:
+                    print(f"Randomizing {b}")
+                    randomize(f'assets/data/{a}/{b}', notes, characters, order)
+                    print(f"{b} randomized")
         input("Successfully randomized. Please press ENTER...")
 
 if __name__ == "__main__":
