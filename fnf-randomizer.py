@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 
+# Friday Night Funkin Randomizer by Nate Stutte
+# Last updated 2-4-2021
+
 import json
 import string
 import random
