@@ -6,7 +6,7 @@ Play and download Friday Night Funkin here: https://ninja-muffin24.itch.io/funki
 ## Requirements
 You will need Python 3.7+ to run the program. Install the most recent version of Python here: https://www.python.org/downloads/
 
-You will also need to download the latest version of Friday Night Funkin. This download can be found at the game's itchio page linked above. It is heavily recommended that you use a clean build and not your own build! Always good to have a backup just in case things go wrong.
+You will also need to download the latest version of Friday Night Funkin (v4). This download can be found at the game's itchio page linked above. It is heavily recommended that you use a clean build and not your own build! Always good to have a backup just in case things go wrong.
 
 ## Installation and Instructions
 Download and place the fnf-randomizer.py file inside the root Friday Night Funkin directory (the same directory that the executable is in). With Python 3.7+ installed on the same computer, run the python executable by double-clicking it or running it through cmd using the command:
