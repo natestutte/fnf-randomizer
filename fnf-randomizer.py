@@ -43,6 +43,7 @@ def randomize(song, notes, character, order):
         if order:
             a['mustHitSection'] = bool(random.getrandbits(1))
         if notes:
+            a['sectionNotes'] = [list(t) for t in {tuple(item) for item in a['sectionNotes']}]
             for b in a['sectionNotes']:
                 if b[1] > 3:
                     b[1] = random.randint(4, 7)
@@ -52,6 +53,7 @@ def randomize(song, notes, character, order):
         if order:
             a['mustHitSection'] = bool(random.getrandbits(1))
         if notes:
+            a['sectionNotes'] = [list(t) for t in {tuple(item) for item in a['sectionNotes']}]
             for b in a['sectionNotes']:
                 if b[1] > 3:
                     b[1] = random.randint(4, 7)
