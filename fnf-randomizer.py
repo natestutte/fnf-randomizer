@@ -11,23 +11,8 @@ import os
 def randomize(song, notes, character, order):
 
     # gf-christmas crashes :(
-    characterlist = [
-        'bf',
-        'dad',
-        'gf',
-        'spooky',
-        'pico',
-        'mom',
-        'mom-car',
-        'bf-car',
-        'parents-christmas',
-        'monster-christmas',
-        'bf-christmas',
-        'monster',
-        'bf-pixel',
-        'senpai',
-        'spirit'
-    ]
+    characterlist = [a.rsplit() for a in open(os.path.abspath('./assets/data/characterList.txt'), 'r').readlines() if a != 'gf-christmas\n']
+    print(characterlist)
     
     with open(song, 'r') as file:
         contents = file.read()
