@@ -25,16 +25,18 @@ def randomize(path, song, notes, character, order):
             print(random.choice(characterlist))
             data['song']['player1'] = random.choice(characterlist)[0]
             data['song']['player2'] = random.choice(characterlist)[0]
-        for a in data['song']['notes']:
-            if order:
-                a['mustHitSection'] = bool(random.getrandbits(1))
-            if notes:
-                a['sectionNotes'] = [list(t) for t in {tuple(item) for item in a['sectionNotes']}]
-                for b in a['sectionNotes']:
-                    if b[1] > 3:
-                        b[1] = random.randint(4, 7)
-                    else:
-                        b[1] = random.randint(0, 3)
+        if 'song' in data:
+            if 'notes' in data['song']:
+                for a in data['song']['notes']:
+                    if order:
+                        a['mustHitSection'] = bool(random.getrandbits(1))
+                    if notes:
+                        a['sectionNotes'] = [list(t) for t in {tuple(item) for item in a['sectionNotes']}]
+                        for b in a['sectionNotes']:
+                            if b[1] > 3:
+                                b[1] = random.randint(4, 7)
+                            else:
+                                b[1] = random.randint(0, 3)
         if 'notes' in data:
             for a in data['notes']:
                 if order:
