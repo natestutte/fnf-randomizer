@@ -8,7 +8,7 @@ import string
 import random
 import os
 
-def randomize(path, song, notes, character, order):
+def randomize(path, song, notes, character, order, single):
 
     # gf-christmas crashes :(
     try:    
@@ -28,7 +28,9 @@ def randomize(path, song, notes, character, order):
         if 'song' in data:
             if 'notes' in data['song']:
                 for a in data['song']['notes']:
-                    if order:
+                    if single:
+                        a['mustHitSection'] = True
+                    elif order:
                         a['mustHitSection'] = bool(random.getrandbits(1))
                     if notes:
                         a['sectionNotes'] = [list(t) for t in {tuple(item) for item in a['sectionNotes']}]
@@ -39,7 +41,9 @@ def randomize(path, song, notes, character, order):
                                 b[1] = random.randint(0, 3)
         if 'notes' in data:
             for a in data['notes']:
-                if order:
+                if single:
+                    a['mustHitSection'] = True
+                elif order:
                     a['mustHitSection'] = bool(random.getrandbits(1))
                 if notes:
                     a['sectionNotes'] = [list(t) for t in {tuple(item) for item in a['sectionNotes']}]
@@ -57,7 +61,7 @@ def randomize(path, song, notes, character, order):
         return f"Could not properly randomize {song}"
     return ""
 
-def startRandomize(path, notes, chars, order):
+def startRandomize(path, notes, chars, order, single):
     try:
         directories = [a for a in os.listdir(f"{path}/assets/data") if '.' not in a and a != 'smash'] # smash doesn't work :(
 
@@ -67,7 +71,7 @@ def startRandomize(path, notes, chars, order):
             for b in os.listdir(f"{path}/assets/data/{a}"):
                 if '.txt' not in b:
                     print(f"Randomizing {b}")
-                    rstatus = randomize(path, f'assets/data/{a}/{b}', notes, chars, order)
+                    rstatus = randomize(path, f'assets/data/{a}/{b}', notes, chars, order, single)
                     if rstatus != "":
                         status += rstatus + "\n"
                     print(f"{b} randomized")

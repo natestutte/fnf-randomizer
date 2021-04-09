@@ -9,7 +9,7 @@ def activate():
     statusLabel.config(state=tk.NORMAL)
     statusLabel.delete(1.0, tk.END)
     statusLabel.config(state=tk.DISABLED)
-    activate_status = startRandomize(fnf_path.get(), bool(notes.get()), bool(chars.get()), bool(order.get()))
+    activate_status = startRandomize(fnf_path.get(), bool(notes.get()), bool(chars.get()), bool(order.get()), bool(single.get()))
     statusLabel.config(state=tk.NORMAL)
     statusLabel.insert(tk.END, activate_status)
     statusLabel.config(state=tk.DISABLED)
@@ -18,9 +18,17 @@ def browsePath():
     filename = filedialog.askdirectory()
     fnf_path.set(filename)
 
+def switchOrder():
+    if order.get() == 1:
+        orderBttn.toggle()
+    if orderBttn["state"] == tk.NORMAL:
+        orderBttn["state"] = tk.DISABLED
+    elif orderBttn["state"] == tk.DISABLED:
+        orderBttn["state"] = tk.NORMAL
+
 root = tk.Tk()
 
-root.geometry("300x400")
+root.geometry("300x450")
 root.resizable(False, False)
 
 frame = tk.Frame(root)
@@ -40,13 +48,16 @@ submitBttn.pack(padx=5, pady=5)
 notes = tk.IntVar()
 chars = tk.IntVar()
 order = tk.IntVar()
+single = tk.IntVar()
 
 notesBttn = tk.Checkbutton(frame, font=("Helvetia 10"), text="Randomize Notes", width=20, variable=notes)
-notesBttn.pack(padx=5, pady=5)
+notesBttn.pack(padx=5, pady=2)
 charsBttn = tk.Checkbutton(frame, font=("Helvetia 10"), text="Randomize Characters", width=20, variable=chars)
-charsBttn.pack(padx=5, pady=5)
+charsBttn.pack(padx=5, pady=2)
 orderBttn = tk.Checkbutton(frame, font=("Helvetia 10"), text="Randomize Order", width=20, variable=order)
-orderBttn.pack(padx=5, pady=5)
+orderBttn.pack(padx=5, pady=2)
+singleBttn = tk.Checkbutton(frame, font=("Helvetia 10"), text="Solo Mode", width=20, variable=single, command=switchOrder)
+singleBttn.pack(padx=5, pady=2)
 
 submitBttn = tk.Button(frame, font=("Helvetia 14"), text="Randomize", command=activate)
 submitBttn.pack(padx=5, pady=5)
