@@ -53,7 +53,7 @@ def randomize(path, song, notes, character, order, single):
                         else:
                             b[1] = random.randint(0, 3)
 
-        data = json.dumps(data).replace(' ','')
+        data = json.dumps(data)#.replace(' ','')
 
         with open(f"{path}/{song}", 'w') as file:
             file.write(data + end)
